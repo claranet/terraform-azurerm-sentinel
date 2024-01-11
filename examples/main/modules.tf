@@ -32,6 +32,6 @@ module "sentinel" {
   source  = "claranet/sentinel/azurerm"
   version = "x.x.x"
 
-  log_analytics_workspace_id = modules.logs.log_analytics_workspace_id
+  log_analytics_workspace_id = module.logs.log_analytics_workspace_id
   data_connector_aad_enabled = true
 }
