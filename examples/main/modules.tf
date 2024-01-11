@@ -15,8 +15,8 @@ module "rg" {
   stack       = var.stack
 }
 
-module "sentinel" {
-  source  = "claranet/sentinel/azurerm"
+module "logs" {
+  source  = "claranet/run/azurerm//modules/logs"
   version = "x.x.x"
 
   location            = module.azure_region.location
@@ -26,11 +26,12 @@ module "sentinel" {
   client_name = var.client_name
   environment = var.environment
   stack       = var.stack
+}
 
-  logs_storage_account_enabled = false
-  data_connector_aad_enabled   = true
+module "sentinel" {
+  source  = "claranet/sentinel/azurerm"
+  version = "x.x.x"
 
-  extra_tags = {
-    foo = "bar"
-  }
+  log_analytics_workspace_id = modules.logs.log_analytics_workspace_id
+  data_connector_aad_enabled = true
 }
