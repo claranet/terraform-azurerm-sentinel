@@ -1,7 +1,7 @@
-# Azure Sentinel
+# Microsoft Sentinel
 [![Changelog](https://img.shields.io/badge/changelog-release-green.svg)](CHANGELOG.md) [![Notice](https://img.shields.io/badge/notice-copyright-yellow.svg)](NOTICE) [![Apache V2 License](https://img.shields.io/badge/license-Apache%20V2-orange.svg)](LICENSE) [![TF Registry](https://img.shields.io/badge/terraform-registry-blue.svg)](https://registry.terraform.io/modules/claranet/sentinel/azurerm/)
 
-Azure module to deploy a [Azure Sentinel](https://docs.microsoft.com/en-us/azure/xxxxxxx).
+Azure module to deploy a [Microsoft Sentinel](https://learn.microsoft.com/en-us/azure/sentinel/overview).
 
 <!-- BEGIN_TF_DOCS -->
 ## Global versioning rule for Claranet Azure modules
@@ -47,20 +47,8 @@ module "rg" {
   stack       = var.stack
 }
 
-module "run" {
-  source  = "claranet/run/azurerm"
-  version = "x.x.x"
-
-  client_name         = var.client_name
-  environment         = var.environment
-  stack               = var.stack
-  location            = module.azure_region.location
-  location_short      = module.azure_region.location_short
-  resource_group_name = module.rg.resource_group_name
-}
-
-module "sentinel" {
-  source  = "claranet/sentinel/azurerm"
+module "logs" {
+  source  = "claranet/run/azurerm//modules/logs"
   version = "x.x.x"
 
   location            = module.azure_region.location
@@ -70,15 +58,14 @@ module "sentinel" {
   client_name = var.client_name
   environment = var.environment
   stack       = var.stack
+}
 
-  logs_destinations_ids = [
-    module.run.logs_storage_account_id,
-    module.run.log_analytics_workspace_id
-  ]
+module "sentinel" {
+  source  = "claranet/sentinel/azurerm"
+  version = "x.x.x"
 
-  extra_tags = {
-    foo = "bar"
-  }
+  log_analytics_workspace_id = module.logs.log_analytics_workspace_id
+  data_connector_aad_enabled = true
 }
 ```
 
@@ -86,56 +73,38 @@ module "sentinel" {
 
 | Name | Version |
 |------|---------|
-| azurecaf | ~> 1.2, >= 1.2.22 |
-| azurerm | ~> 3.36 |
+| azapi | ~> 1.11.0 |
+| azurerm | ~> 3.63 |
 
 ## Modules
 
-| Name | Source | Version |
-|------|--------|---------|
-| diagnostics | claranet/diagnostic-settings/azurerm | n/a |
+No modules.
 
 ## Resources
 
 | Name | Type |
 |------|------|
-| [azurerm_sentinel_data_connector_azure_security_center.sentinel](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/sentinel_data_connector_azure_security_center) | resource |
-| [azurecaf_name.sentinel](https://registry.terraform.io/providers/aztfmod/azurecaf/latest/docs/data-sources/name) | data source |
+| [azapi_resource.ueba](https://registry.terraform.io/providers/Azure/azapi/latest/docs/resources/resource) | resource |
+| [azapi_resource.ueba_entity](https://registry.terraform.io/providers/Azure/azapi/latest/docs/resources/resource) | resource |
+| [azurerm_monitor_aad_diagnostic_setting.aad_logs](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/monitor_aad_diagnostic_setting) | resource |
+| [azurerm_sentinel_log_analytics_workspace_onboarding.sentinel](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/sentinel_log_analytics_workspace_onboarding) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| allowed\_cidrs | List of allowed CIDR ranges to access the Azure Sentinel resource. | `list(string)` | `[]` | no |
-| allowed\_subnet\_ids | List of allowed subnets IDs to access the Azure Sentinel resource. | `list(string)` | `[]` | no |
-| client\_name | Client name/account used in naming. | `string` | n/a | yes |
-| custom\_diagnostic\_settings\_name | Custom name of the diagnostics settings, name will be 'default' if not set. | `string` | `"default"` | no |
-| custom\_name | Custom Azure Sentinel, generated if not set | `string` | `""` | no |
-| default\_tags\_enabled | Option to enable or disable default tags. | `bool` | `true` | no |
-| environment | Project environment. | `string` | n/a | yes |
-| extra\_tags | Additional tags to add on resources. | `map(string)` | `{}` | no |
-| location | Azure region to use. | `string` | n/a | yes |
-| location\_short | Short string for Azure location. | `string` | n/a | yes |
-| logs\_categories | Log categories to send to destinations. | `list(string)` | `null` | no |
-| logs\_destinations\_ids | List of destination resources IDs for logs diagnostic destination.<br>Can be `Storage Account`, `Log Analytics Workspace` and `Event Hub`. No more than one of each can be set.<br>If you want to specify an Azure EventHub to send logs and metrics to, you need to provide a formated string with both the EventHub Namespace authorization send ID and the EventHub name (name of the queue to use in the Namespace) separated by the `|` character. | `list(string)` | n/a | yes |
-| logs\_metrics\_categories | Metrics categories to send to destinations. | `list(string)` | `null` | no |
-| name\_prefix | Optional prefix for the generated name | `string` | `""` | no |
-| name\_suffix | Optional suffix for the generated name | `string` | `""` | no |
-| network\_bypass | Specify whether traffic is bypassed for 'Logging', 'Metrics', 'AzureServices' or 'None'. | `list(string)` | <pre>[<br>  "Logging",<br>  "Metrics",<br>  "AzureServices"<br>]</pre> | no |
-| public\_network\_access\_enabled | Whether the Azure Sentinel is available from public network. | `bool` | `false` | no |
-| resource\_group\_name | Name of the resource group. | `string` | n/a | yes |
-| stack | Project stack name. | `string` | n/a | yes |
+| data\_connector\_aad\_enabled | Whether the Azure Active Directory logs are retrieved. | `bool` | `false` | no |
+| data\_connector\_aad\_logs | List of Azure Active Directory log category. | `list(string)` | <pre>[<br>  "AuditLogs",<br>  "SignInLogs",<br>  "NonInteractiveUserSignInLogs",<br>  "ServicePrincipalSignInLogs",<br>  "ManagedIdentitySignInLogs",<br>  "ProvisioningLogs",<br>  "ADFSSignInLogs",<br>  "RiskyUsers",<br>  "UserRiskEvents",<br>  "NetworkAccessTrafficLogs",<br>  "RiskyServicePrincipals",<br>  "ServicePrincipalRiskEvents",<br>  "EnrichedOffice365AuditLogs",<br>  "MicrosoftGraphActivityLogs"<br>]</pre> | no |
+| log\_analytics\_workspace\_id | The Log Analytics Workspace ID. | `string` | n/a | yes |
+| ueba\_data\_sources | List of UEBA (User and Entity Behavior Analytics) data sources. | `list(string)` | <pre>[<br>  "AuditLogs",<br>  "AzureActivity",<br>  "SecurityEvent",<br>  "SigninLogs"<br>]</pre> | no |
+| ueba\_enabled | Whether UEBA (User and Entity Behavior Analytics) feature is enabled. | `bool` | `true` | no |
+| ueba\_entity\_providers | List of UEBA (User and Entity Behavior Analytics) entity providers. | `list(string)` | <pre>[<br>  "AzureActiveDirectory"<br>]</pre> | no |
 
 ## Outputs
 
-| Name | Description |
-|------|-------------|
-| id | Azure Sentinel ID |
-| identity\_principal\_id | Azure Sentinel system identity principal ID |
-| name | Azure Sentinel name |
-| sentinel | Azure Sentinel output object |
+No outputs.
 <!-- END_TF_DOCS -->
 
 ## Related documentation
 
-Microsoft Azure documentation: xxxx
+Microsoft Azure documentation: [learn.microsoft.com/en-us/azure/sentinel/overview](https://learn.microsoft.com/en-us/azure/sentinel/overview)
