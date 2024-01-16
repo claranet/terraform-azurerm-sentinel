@@ -33,5 +33,7 @@ module "sentinel" {
   version = "x.x.x"
 
   log_analytics_workspace_id = module.logs.log_analytics_workspace_id
+  logs_destinations_ids      = [module.logs.log_analytics_workspace_id]
+
   data_connector_aad_enabled = true
 }
