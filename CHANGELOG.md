@@ -1,3 +1,8 @@
+# Unreleased
+
+Added
+  * AZ-1331: Added Diagnostic Settings (Health and Audit logs)
+
 # v7.0.0 - 2024-01-15
 
 Added
