@@ -75,7 +75,7 @@ module "sentinel" {
 
 | Name | Version |
 |------|---------|
-| azapi | ~> 1.11.0 |
+| azapi | ~> 1.12.0 |
 | azurerm | ~> 3.63 |
 
 ## Modules
