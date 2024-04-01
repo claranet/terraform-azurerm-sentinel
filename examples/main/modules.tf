@@ -36,4 +36,5 @@ module "sentinel" {
   logs_destinations_ids      = [module.logs.log_analytics_workspace_id]
 
   data_connector_aad_enabled = true
+  data_connector_mti_enabled = true
 }

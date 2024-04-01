@@ -15,6 +15,18 @@ variable "data_connector_aad_logs" {
   default     = ["AuditLogs", "SignInLogs", "NonInteractiveUserSignInLogs", "ServicePrincipalSignInLogs", "ManagedIdentitySignInLogs", "ProvisioningLogs", "ADFSSignInLogs", "RiskyUsers", "UserRiskEvents", "NetworkAccessTrafficLogs", "RiskyServicePrincipals", "ServicePrincipalRiskEvents", "EnrichedOffice365AuditLogs", "MicrosoftGraphActivityLogs"]
 }
 
+variable "data_connector_mti_enabled" {
+  description = "Whether the Microsoft Threat Intelligence Data Connector is enabled."
+  type        = bool
+  default     = false
+}
+
+variable "data_connector_mti_lookback_days" {
+  description = "Microsoft Threat Intelligence Data lookback days."
+  type        = number
+  default     = 7
+}
+
 variable "ueba_enabled" {
   description = "Whether UEBA (User and Entity Behavior Analytics) feature is enabled."
   type        = bool

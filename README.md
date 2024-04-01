@@ -68,6 +68,7 @@ module "sentinel" {
   logs_destinations_ids      = [module.logs.log_analytics_workspace_id]
 
   data_connector_aad_enabled = true
+  data_connector_mti_enabled = true
 }
 ```
 
@@ -77,6 +78,7 @@ module "sentinel" {
 |------|---------|
 | azapi | ~> 1.12.0 |
 | azurerm | ~> 3.63 |
+| time | ~> 0.11 |
 
 ## Modules
 
@@ -91,7 +93,9 @@ module "sentinel" {
 | [azapi_resource.ueba](https://registry.terraform.io/providers/Azure/azapi/latest/docs/resources/resource) | resource |
 | [azapi_resource.ueba_entity](https://registry.terraform.io/providers/Azure/azapi/latest/docs/resources/resource) | resource |
 | [azurerm_monitor_aad_diagnostic_setting.aad_logs](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/monitor_aad_diagnostic_setting) | resource |
+| [azurerm_sentinel_data_connector_microsoft_threat_intelligence.mti](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/sentinel_data_connector_microsoft_threat_intelligence) | resource |
 | [azurerm_sentinel_log_analytics_workspace_onboarding.sentinel](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/sentinel_log_analytics_workspace_onboarding) | resource |
+| [time_offset.mti](https://registry.terraform.io/providers/hashicorp/time/latest/docs/resources/offset) | resource |
 
 ## Inputs
 
@@ -100,6 +104,8 @@ module "sentinel" {
 | custom\_diagnostic\_settings\_name | Custom name of the diagnostics settings, name will be 'default' if not set. | `string` | `"default"` | no |
 | data\_connector\_aad\_enabled | Whether the Azure Active Directory logs are retrieved. | `bool` | `false` | no |
 | data\_connector\_aad\_logs | List of Azure Active Directory log category. | `list(string)` | <pre>[<br>  "AuditLogs",<br>  "SignInLogs",<br>  "NonInteractiveUserSignInLogs",<br>  "ServicePrincipalSignInLogs",<br>  "ManagedIdentitySignInLogs",<br>  "ProvisioningLogs",<br>  "ADFSSignInLogs",<br>  "RiskyUsers",<br>  "UserRiskEvents",<br>  "NetworkAccessTrafficLogs",<br>  "RiskyServicePrincipals",<br>  "ServicePrincipalRiskEvents",<br>  "EnrichedOffice365AuditLogs",<br>  "MicrosoftGraphActivityLogs"<br>]</pre> | no |
+| data\_connector\_mti\_enabled | Whether the Microsoft Threat Intelligence Data Connector is enabled. | `bool` | `false` | no |
+| data\_connector\_mti\_lookback\_days | Microsoft Threat Intelligence Data lookback days. | `number` | `7` | no |
 | log\_analytics\_workspace\_id | The Log Analytics Workspace ID. | `string` | n/a | yes |
 | logs\_categories | Log categories to send to destinations. | `list(string)` | `null` | no |
 | logs\_destinations\_ids | List of destination resources IDs for logs diagnostic destination.<br>Can be `Storage Account`, `Log Analytics Workspace` and `Event Hub`. No more than one of each can be set.<br>If you want to specify an Azure EventHub to send logs and metrics to, you need to provide a formated string with both the EventHub Namespace authorization send ID and the EventHub name (name of the queue to use in the Namespace) separated by the `|` character. | `list(string)` | n/a | yes |
