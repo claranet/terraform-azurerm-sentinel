@@ -1,3 +1,8 @@
+# Unreleased
+
+Added
+  * AZ-1386: Added Microsoft Threat Intelligence Data Connector
+
 # v7.1.0 - 2024-01-19
 
 Added
