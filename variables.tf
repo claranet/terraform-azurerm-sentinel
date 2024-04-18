@@ -23,6 +23,7 @@ variable "data_connector_aws_s3_configuration" {
     sqs_urls          = list(string)
   }))
   default = {}
+  nullable = false
 }
 
 variable "data_connector_mti_enabled" {
