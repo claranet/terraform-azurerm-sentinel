@@ -13,6 +13,17 @@ resource "azurerm_monitor_aad_diagnostic_setting" "aad_logs" {
   }
 }
 
+resource "azurerm_sentinel_data_connector_aws_s3" "aws_s3" {
+  for_each = var.data_connector_aws_s3_configuration
+
+  name                       = each.key
+  log_analytics_workspace_id = azurerm_sentinel_log_analytics_workspace_onboarding.sentinel.workspace_id
+
+  aws_role_arn      = each.value.aws_role_arn
+  destination_table = each.value.destination_table
+  sqs_urls          = each.value.sqs_urls
+}
+
 resource "time_offset" "mti" {
   count = var.data_connector_mti_enabled ? 1 : 0
 
