@@ -1,3 +1,22 @@
+## 7.3.0 (2024-04-19)
+
+
+### Features
+
+* **AZ-1393:** add AWS S3 connector 8f0871d
+
+
+### Styles
+
+* **AZ-1393:** apply format variables.tf 03462c2
+* **AZ-1393:** format variables.tf d928d71
+
+
+### Continuous Integration
+
+* **AZ-1391:** enable semantic-release [skip ci] dacf2fe
+* **AZ-1391:** update semantic-release config [skip ci] 2629dde
+
 # v7.2.0 - 2024-04-12
 
 Added
