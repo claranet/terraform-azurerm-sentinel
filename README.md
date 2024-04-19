@@ -93,6 +93,7 @@ module "sentinel" {
 | [azapi_resource.ueba](https://registry.terraform.io/providers/Azure/azapi/latest/docs/resources/resource) | resource |
 | [azapi_resource.ueba_entity](https://registry.terraform.io/providers/Azure/azapi/latest/docs/resources/resource) | resource |
 | [azurerm_monitor_aad_diagnostic_setting.aad_logs](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/monitor_aad_diagnostic_setting) | resource |
+| [azurerm_sentinel_data_connector_aws_s3.aws_s3](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/sentinel_data_connector_aws_s3) | resource |
 | [azurerm_sentinel_data_connector_microsoft_threat_intelligence.mti](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/sentinel_data_connector_microsoft_threat_intelligence) | resource |
 | [azurerm_sentinel_log_analytics_workspace_onboarding.sentinel](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/sentinel_log_analytics_workspace_onboarding) | resource |
 | [time_offset.mti](https://registry.terraform.io/providers/hashicorp/time/latest/docs/resources/offset) | resource |
@@ -104,6 +105,7 @@ module "sentinel" {
 | custom\_diagnostic\_settings\_name | Custom name of the diagnostics settings, name will be 'default' if not set. | `string` | `"default"` | no |
 | data\_connector\_aad\_enabled | Whether the Azure Active Directory logs are retrieved. | `bool` | `false` | no |
 | data\_connector\_aad\_logs | List of Azure Active Directory log category. | `list(string)` | <pre>[<br>  "AuditLogs",<br>  "SignInLogs",<br>  "NonInteractiveUserSignInLogs",<br>  "ServicePrincipalSignInLogs",<br>  "ManagedIdentitySignInLogs",<br>  "ProvisioningLogs",<br>  "ADFSSignInLogs",<br>  "RiskyUsers",<br>  "UserRiskEvents",<br>  "NetworkAccessTrafficLogs",<br>  "RiskyServicePrincipals",<br>  "ServicePrincipalRiskEvents",<br>  "EnrichedOffice365AuditLogs",<br>  "MicrosoftGraphActivityLogs"<br>]</pre> | no |
+| data\_connector\_aws\_s3\_configuration | List of Azure Active Directory log category. | <pre>map(object({<br>    aws_role_arn      = string<br>    destination_table = string<br>    sqs_urls          = list(string)<br>  }))</pre> | `{}` | no |
 | data\_connector\_mti\_enabled | Whether the Microsoft Threat Intelligence Data Connector is enabled. | `bool` | `false` | no |
 | data\_connector\_mti\_lookback\_days | Microsoft Threat Intelligence Data lookback days. | `number` | `7` | no |
 | log\_analytics\_workspace\_id | The Log Analytics Workspace ID. | `string` | n/a | yes |

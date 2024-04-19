@@ -15,6 +15,17 @@ variable "data_connector_aad_logs" {
   default     = ["AuditLogs", "SignInLogs", "NonInteractiveUserSignInLogs", "ServicePrincipalSignInLogs", "ManagedIdentitySignInLogs", "ProvisioningLogs", "ADFSSignInLogs", "RiskyUsers", "UserRiskEvents", "NetworkAccessTrafficLogs", "RiskyServicePrincipals", "ServicePrincipalRiskEvents", "EnrichedOffice365AuditLogs", "MicrosoftGraphActivityLogs"]
 }
 
+variable "data_connector_aws_s3_configuration" {
+  description = "List of Azure Active Directory log category."
+  type = map(object({
+    aws_role_arn      = string
+    destination_table = string
+    sqs_urls          = list(string)
+  }))
+  default  = {}
+  nullable = false
+}
+
 variable "data_connector_mti_enabled" {
   description = "Whether the Microsoft Threat Intelligence Data Connector is enabled."
   type        = bool
