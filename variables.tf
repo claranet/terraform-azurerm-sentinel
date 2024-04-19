@@ -22,7 +22,7 @@ variable "data_connector_aws_s3_configuration" {
     destination_table = string
     sqs_urls          = list(string)
   }))
-  default = {}
+  default  = {}
   nullable = false
 }
 
