@@ -78,7 +78,7 @@ module "sentinel" {
 |------|---------|
 | azapi | ~> 1.12.0 |
 | azurerm | ~> 3.63 |
-| time | ~> 0.11 |
+| time | ~> 0.12 |
 
 ## Modules
 
