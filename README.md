@@ -84,7 +84,7 @@ module "sentinel" {
 
 | Name | Source | Version |
 |------|--------|---------|
-| diagnostic\_settings | claranet/diagnostic-settings/azurerm | ~> 6.5.0 |
+| diagnostic\_settings | claranet/diagnostic-settings/azurerm | ~> 7.0.0 |
 
 ## Resources
 
