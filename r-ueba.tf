@@ -1,9 +1,9 @@
 resource "azapi_resource" "ueba_entity" {
   count = var.ueba_enabled ? 1 : 0
 
-  type      = "Microsoft.SecurityInsights/settings@2023-02-01-preview"
+  type      = "Microsoft.SecurityInsights/settings@2025-01-01-preview"
   name      = "EntityAnalytics"
-  parent_id = azurerm_sentinel_log_analytics_workspace_onboarding.sentinel.workspace_id
+  parent_id = azurerm_sentinel_log_analytics_workspace_onboarding.main.workspace_id
 
   body = jsonencode({
     kind = "EntityAnalytics"
@@ -13,13 +13,13 @@ resource "azapi_resource" "ueba_entity" {
   })
 }
 
-resource "azapi_resource" "ueba" {
+resource "azapi_resource" "ueba_source" {
   depends_on = [azapi_resource.ueba_entity]
   count      = var.ueba_enabled ? 1 : 0
 
-  type      = "Microsoft.SecurityInsights/settings@2023-02-01-preview"
+  type      = "Microsoft.SecurityInsights/settings@2025-01-01-preview"
   name      = "Ueba"
-  parent_id = azurerm_sentinel_log_analytics_workspace_onboarding.sentinel.workspace_id
+  parent_id = azurerm_sentinel_log_analytics_workspace_onboarding.main.workspace_id
 
   body = jsonencode({
     kind = "Ueba"
@@ -27,4 +27,9 @@ resource "azapi_resource" "ueba" {
       dataSources = var.ueba_data_sources
     }
   })
+}
+
+moved {
+  from = azapi_resource.ueba
+  to   = azapi_resource.ueba_source
 }
