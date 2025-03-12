@@ -1,3 +1,48 @@
+## 8.0.0 (2025-03-12)
+
+### ⚠ BREAKING CHANGES
+
+* **AZ-1088:** module v8 structure and updates
+
+### Features
+
+* **AZ-1088:** module v8 structure and updates 3cbc0e9
+
+### Miscellaneous Chores
+
+* **deps:** update dependency opentofu to v1.8.3 bdd441f
+* **deps:** update dependency opentofu to v1.8.4 7ebb051
+* **deps:** update dependency opentofu to v1.8.6 3a7736d
+* **deps:** update dependency opentofu to v1.8.8 8d85838
+* **deps:** update dependency opentofu to v1.9.0 b46b166
+* **deps:** update dependency pre-commit to v4 f2b7b94
+* **deps:** update dependency pre-commit to v4.0.1 f0e037d
+* **deps:** update dependency pre-commit to v4.1.0 173bf45
+* **deps:** update dependency tflint to v0.54.0 996cdf6
+* **deps:** update dependency tflint to v0.55.0 a28c0e9
+* **deps:** update dependency trivy to v0.56.1 07176e3
+* **deps:** update dependency trivy to v0.56.2 916dc14
+* **deps:** update dependency trivy to v0.57.1 399fff8
+* **deps:** update dependency trivy to v0.58.1 216bbe4
+* **deps:** update dependency trivy to v0.58.2 bcfeb04
+* **deps:** update dependency trivy to v0.59.1 d133d1f
+* **deps:** update dependency trivy to v0.60.0 a128dff
+* **deps:** update pre-commit hook alessandrojcm/commitlint-pre-commit-hook to v9.19.0 4b65046
+* **deps:** update pre-commit hook alessandrojcm/commitlint-pre-commit-hook to v9.20.0 455ae41
+* **deps:** update pre-commit hook alessandrojcm/commitlint-pre-commit-hook to v9.21.0 21df5d6
+* **deps:** update pre-commit hook alessandrojcm/commitlint-pre-commit-hook to v9.22.0 10cd8f1
+* **deps:** update pre-commit hook pre-commit/pre-commit-hooks to v5 ce91ea6
+* **deps:** update pre-commit hook tofuutils/pre-commit-opentofu to v2.1.0 968d3e7
+* **deps:** update terraform claranet/diagnostic-settings/azurerm to v7 21242a8
+* **deps:** update terraform time to ~> 0.13 c38dfd6
+* **deps:** update tools 4ffc3bf
+* **deps:** update tools a1ef0bd
+* **deps:** update tools b8d4b73
+* prepare for new examples structure 1eba5d4
+* update examples structure b38fde0
+* update Github templates b384a56
+* update tflint config for v0.55.0 15abe05
+
 ## 7.3.1 (2024-10-03)
 
 ### Documentation
