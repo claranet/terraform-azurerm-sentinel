@@ -5,12 +5,12 @@ resource "azapi_resource" "ueba_entity" {
   name      = "EntityAnalytics"
   parent_id = azurerm_sentinel_log_analytics_workspace_onboarding.main.workspace_id
 
-  body = jsonencode({
+  body = {
     kind = "EntityAnalytics"
     properties = {
       entityProviders = var.ueba_entity_providers
     }
-  })
+  }
 }
 
 resource "azapi_resource" "ueba_source" {
@@ -21,12 +21,12 @@ resource "azapi_resource" "ueba_source" {
   name      = "Ueba"
   parent_id = azurerm_sentinel_log_analytics_workspace_onboarding.main.workspace_id
 
-  body = jsonencode({
+  body = {
     kind = "Ueba"
     properties = {
       dataSources = var.ueba_data_sources
     }
-  })
+  }
 }
 
 moved {
