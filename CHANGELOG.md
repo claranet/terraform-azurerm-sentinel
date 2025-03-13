@@ -1,3 +1,9 @@
+## 8.0.1 (2025-03-13)
+
+### Bug Fixes
+
+* **AZ-1088:** remove jsondecode function for azapi v2 compatibility 5e19cc1
+
 ## 8.0.0 (2025-03-12)
 
 ### ⚠ BREAKING CHANGES
