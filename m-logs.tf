@@ -1,6 +1,6 @@
 module "diagnostics" {
   source  = "claranet/diagnostic-settings/azurerm"
-  version = "~> 8.0.0"
+  version = "~> 8.1.0"
 
   resource_id = format("%s/providers/Microsoft.SecurityInsights/settings/SentinelHealth", var.log_analytics_workspace_id)
 
