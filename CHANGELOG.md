@@ -1,3 +1,36 @@
+## 8.0.2 (2025-08-29)
+
+### Bug Fixes
+
+* **AZ-1612:** remove deprecated `retention_policy` block 8fcef79
+
+### Miscellaneous Chores
+
+* **⚙️:** ✏️ update template identifier for MR review b32ecb7
+* 🗑️ remove old commitlint configuration files 81607cf
+* **deps:** 🔗 bump AzureRM provider version to v4.31+ f4e4fba
+* **deps:** update dependency claranet/diagnostic-settings/azurerm to ~> 8.1.0 592707d
+* **deps:** update dependency opentofu to v1.10.0 5112c42
+* **deps:** update dependency opentofu to v1.10.1 e9784d3
+* **deps:** update dependency opentofu to v1.10.3 f47bdd6
+* **deps:** update dependency opentofu to v1.9.1 0cfb8a1
+* **deps:** update dependency pre-commit to v4.2.0 e3e1a36
+* **deps:** update dependency terraform-docs to v0.20.0 e737bcd
+* **deps:** update dependency tflint to v0.57.0 17350f6
+* **deps:** update dependency tflint to v0.58.0 943ef0d
+* **deps:** update dependency tflint to v0.58.1 a8b3708
+* **deps:** update dependency trivy to v0.61.1 0fe0092
+* **deps:** update dependency trivy to v0.62.0 fa15afd
+* **deps:** update dependency trivy to v0.62.1 4f04178
+* **deps:** update dependency trivy to v0.63.0 4e7d41e
+* **deps:** update pre-commit hook pre-commit/pre-commit-hooks to v6 e4bd85d
+* **deps:** update pre-commit hook tofuutils/pre-commit-opentofu to v2.2.0 a0a9c8c
+* **deps:** update pre-commit hook tofuutils/pre-commit-opentofu to v2.2.1 838980d
+* **deps:** update tools 640259c
+* **deps:** update tools 440f445
+* **deps:** update tools 3eedb70
+* **deps:** update tools 71602ca
+
 ## 8.0.1 (2025-03-13)
 
 ### Bug Fixes
