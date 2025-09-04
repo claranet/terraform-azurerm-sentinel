@@ -1,3 +1,9 @@
+variable "azure_tenant_id" {
+  description = "Azure tenant ID."
+  type        = string
+  default     = ""
+}
+
 variable "log_analytics_workspace_id" {
   description = "The Log Analytics Workspace ID."
   type        = string
@@ -24,6 +30,12 @@ variable "data_connector_aws_s3_configuration" {
   }))
   default  = {}
   nullable = false
+}
+
+variable "data_connector_mxdr_enabled" {
+  description = "Whether sync is enabled between Microsoft XDR incidents and Microsoft Sentinel."
+  type        = bool
+  default     = false
 }
 
 variable "data_connector_mti_enabled" {
