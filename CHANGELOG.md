@@ -1,3 +1,15 @@
+## 8.1.0 (2025-09-05)
+
+### Features
+
+* **AZ-1614:** add Microsoft XDR connector 31a36cb
+
+### Miscellaneous Chores
+
+* **deps:** update dependency tflint to v0.59.1 9243ca9
+* **deps:** update dependency trivy to v0.66.0 5243710
+* update api version 353dd0f
+
 ## 8.0.2 (2025-08-29)
 
 ### Bug Fixes
