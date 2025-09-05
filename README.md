@@ -76,6 +76,7 @@ module "sentinel" {
 
 | Name | Type |
 |------|------|
+| [azapi_resource.data_connector_mxdr](https://registry.terraform.io/providers/azure/azapi/latest/docs/resources/resource) | resource |
 | [azapi_resource.ueba_entity](https://registry.terraform.io/providers/azure/azapi/latest/docs/resources/resource) | resource |
 | [azapi_resource.ueba_source](https://registry.terraform.io/providers/azure/azapi/latest/docs/resources/resource) | resource |
 | [azurerm_monitor_aad_diagnostic_setting.main](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/monitor_aad_diagnostic_setting) | resource |
@@ -88,11 +89,13 @@ module "sentinel" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| azure\_tenant\_id | Azure tenant ID. | `string` | `""` | no |
 | data\_connector\_aad\_enabled | Whether the Azure Active Directory logs are retrieved. | `bool` | `false` | no |
 | data\_connector\_aad\_logs | List of Azure Active Directory log category. | `list(string)` | <pre>[<br/>  "AuditLogs",<br/>  "SignInLogs",<br/>  "NonInteractiveUserSignInLogs",<br/>  "ServicePrincipalSignInLogs",<br/>  "ManagedIdentitySignInLogs",<br/>  "ProvisioningLogs",<br/>  "ADFSSignInLogs",<br/>  "RiskyUsers",<br/>  "UserRiskEvents",<br/>  "NetworkAccessTrafficLogs",<br/>  "RiskyServicePrincipals",<br/>  "ServicePrincipalRiskEvents",<br/>  "EnrichedOffice365AuditLogs",<br/>  "MicrosoftGraphActivityLogs"<br/>]</pre> | no |
 | data\_connector\_aws\_s3\_configuration | List of Azure Active Directory log category. | <pre>map(object({<br/>    aws_role_arn      = string<br/>    destination_table = string<br/>    sqs_urls          = list(string)<br/>  }))</pre> | `{}` | no |
 | data\_connector\_mti\_enabled | Whether the Microsoft Threat Intelligence Data Connector is enabled. | `bool` | `false` | no |
 | data\_connector\_mti\_lookback\_days | Microsoft Threat Intelligence Data lookback days. | `number` | `7` | no |
+| data\_connector\_mxdr\_enabled | Whether sync is enabled between Microsoft XDR incidents and Microsoft Sentinel. | `bool` | `false` | no |
 | diagnostic\_settings\_custom\_name | Custom name of the diagnostics settings, name will be `default` if not set. | `string` | `"default"` | no |
 | log\_analytics\_workspace\_id | The Log Analytics Workspace ID. | `string` | n/a | yes |
 | logs\_categories | Log categories to send to destinations. | `list(string)` | `null` | no |

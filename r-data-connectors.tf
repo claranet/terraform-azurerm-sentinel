@@ -56,3 +56,37 @@ moved {
   from = azurerm_sentinel_data_connector_microsoft_threat_intelligence.mti
   to   = azurerm_sentinel_data_connector_microsoft_threat_intelligence.main
 }
+
+resource "azapi_resource" "data_connector_mxdr" {
+  count = var.data_connector_mxdr_enabled ? 1 : 0
+
+  type = "Microsoft.SecurityInsights/dataConnectors@2025-07-01-preview"
+
+  parent_id = azurerm_sentinel_log_analytics_workspace_onboarding.main.workspace_id
+  name      = "data-connector-mxdr"
+
+  body = {
+    kind = "MicrosoftThreatProtection"
+    properties = {
+      dataTypes = {
+        alerts = {
+          state = "disabled"
+        }
+        incidents = {
+          state = "enabled"
+        }
+      }
+      filteredProviders = {
+        alerts = []
+      }
+      tenantId = var.azure_tenant_id
+    }
+  }
+
+  lifecycle {
+    precondition {
+      condition     = !var.data_connector_mxdr_enabled || (var.azure_tenant_id != null && length(var.azure_tenant_id) > 0)
+      error_message = "azure_tenant_id must be set when data_connector_mxdr_enabled variable is true."
+    }
+  }
+}
