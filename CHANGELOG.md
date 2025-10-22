@@ -1,3 +1,17 @@
+## 8.1.1 (2025-10-22)
+
+### Documentation
+
+* 📚️ fix Changelog bce9d9f
+
+### Miscellaneous Chores
+
+* **deps:** update dependency claranet/diagnostic-settings/azurerm to ~> 8.2.0 b892542
+* **deps:** update dependency opentofu to v1.10.6 c920c63
+* **deps:** update dependency trivy to v0.67.0 7baeaaa
+* **deps:** update dependency trivy to v0.67.1 0094000
+* **deps:** update dependency trivy to v0.67.2 87303ce
+
 ## 8.1.0 (2025-09-05)
 
 ### Features
