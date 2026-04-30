@@ -61,7 +61,7 @@ module "sentinel" {
 ## Providers
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | azapi | ~> 2.0 |
 | azurerm | ~> 4.31 |
 | time | ~> 0.13 |
@@ -69,13 +69,13 @@ module "sentinel" {
 ## Modules
 
 | Name | Source | Version |
-|------|--------|---------|
+| ---- | ------ | ------- |
 | diagnostics | claranet/diagnostic-settings/azurerm | ~> 8.2.0 |
 
 ## Resources
 
 | Name | Type |
-|------|------|
+| ---- | ---- |
 | [azapi_resource.data_connector_mxdr](https://registry.terraform.io/providers/azure/azapi/latest/docs/resources/resource) | resource |
 | [azapi_resource.ueba_entity](https://registry.terraform.io/providers/azure/azapi/latest/docs/resources/resource) | resource |
 | [azapi_resource.ueba_source](https://registry.terraform.io/providers/azure/azapi/latest/docs/resources/resource) | resource |
@@ -88,7 +88,7 @@ module "sentinel" {
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
+| ---- | ----------- | ---- | ------- | :------: |
 | azure\_tenant\_id | Azure tenant ID. | `string` | `""` | no |
 | data\_connector\_aad\_enabled | Whether the Azure Active Directory logs are retrieved. | `bool` | `false` | no |
 | data\_connector\_aad\_logs | List of Azure Active Directory log category. | `list(string)` | <pre>[<br/>  "AuditLogs",<br/>  "SignInLogs",<br/>  "NonInteractiveUserSignInLogs",<br/>  "ServicePrincipalSignInLogs",<br/>  "ManagedIdentitySignInLogs",<br/>  "ProvisioningLogs",<br/>  "ADFSSignInLogs",<br/>  "RiskyUsers",<br/>  "UserRiskEvents",<br/>  "NetworkAccessTrafficLogs",<br/>  "RiskyServicePrincipals",<br/>  "ServicePrincipalRiskEvents",<br/>  "EnrichedOffice365AuditLogs",<br/>  "MicrosoftGraphActivityLogs"<br/>]</pre> | no |
