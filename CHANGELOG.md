@@ -1,3 +1,24 @@
+## 9.0.0 (2026-08-24)
+
+### ⚠ BREAKING CHANGES
+
+* **SREAA-368:** Minimum OpenTofu version raised to 1.12, AzureRM provider raised to ~> 5.0, diagnostic-settings module raised to ~> 9.0.
+
+### Features
+
+* **SREAA-368:** upgrade module to v9 (OpenTofu >= 1.12, AzureRM ~> 5.0) 447b8be
+
+### Continuous Integration
+
+* 👷 point the pipeline include back at the ci master branch 95c710c
+
+### Miscellaneous Chores
+
+* **deps:** update dependency opentofu to v1.12.5 93524c3
+* **deps:** update dependency tflint to v0.64.0 1d33132
+* rerun CI b4f5362
+* **v9:** 🐛 synchronize common files and docs 365a748
+
 ## 8.1.4 (2026-07-20)
 
 ### Bug Fixes
