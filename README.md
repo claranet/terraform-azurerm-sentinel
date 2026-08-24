@@ -64,14 +64,14 @@ module "sentinel" {
 | Name | Version |
 | ---- | ------- |
 | azapi | ~> 2.0 |
-| azurerm | ~> 4.31 |
+| azurerm | ~> 5.0 |
 | time | ~> 0.14 |
 
 ## Modules
 
 | Name | Source | Version |
 | ---- | ------ | ------- |
-| diagnostics | claranet/diagnostic-settings/azurerm | ~> 8.2.0 |
+| diagnostics | claranet/diagnostic-settings/azurerm | ~> 9.0 |
 
 ## Resources
 
@@ -92,8 +92,8 @@ module "sentinel" {
 | ---- | ----------- | ---- | ------- | :------: |
 | azure\_tenant\_id | Azure tenant ID. | `string` | `""` | no |
 | data\_connector\_aad\_enabled | Whether the Azure Active Directory logs are retrieved. | `bool` | `false` | no |
-| data\_connector\_aad\_logs | List of Azure Active Directory log category. | `list(string)` | <pre>[<br/>  "AuditLogs",<br/>  "SignInLogs",<br/>  "NonInteractiveUserSignInLogs",<br/>  "ServicePrincipalSignInLogs",<br/>  "ManagedIdentitySignInLogs",<br/>  "ProvisioningLogs",<br/>  "ADFSSignInLogs",<br/>  "RiskyUsers",<br/>  "UserRiskEvents",<br/>  "NetworkAccessTrafficLogs",<br/>  "RiskyServicePrincipals",<br/>  "ServicePrincipalRiskEvents",<br/>  "EnrichedOffice365AuditLogs",<br/>  "MicrosoftGraphActivityLogs"<br/>]</pre> | no |
-| data\_connector\_aws\_s3\_configuration | List of Azure Active Directory log category. | <pre>map(object({<br/>    aws_role_arn      = string<br/>    destination_table = string<br/>    sqs_urls          = list(string)<br/>  }))</pre> | `{}` | no |
+| data\_connector\_aad\_logs | List of Azure Active Directory log categories. | `list(string)` | <pre>[<br/>  "AuditLogs",<br/>  "SignInLogs",<br/>  "NonInteractiveUserSignInLogs",<br/>  "ServicePrincipalSignInLogs",<br/>  "ManagedIdentitySignInLogs",<br/>  "ProvisioningLogs",<br/>  "ADFSSignInLogs",<br/>  "RiskyUsers",<br/>  "UserRiskEvents",<br/>  "NetworkAccessTrafficLogs",<br/>  "RiskyServicePrincipals",<br/>  "ServicePrincipalRiskEvents",<br/>  "EnrichedOffice365AuditLogs",<br/>  "MicrosoftGraphActivityLogs"<br/>]</pre> | no |
+| data\_connector\_aws\_s3\_configuration | Map of AWS S3 data connector configurations with role ARN, destination table, and SQS URLs. | <pre>map(object({<br/>    aws_role_arn      = string<br/>    destination_table = string<br/>    sqs_urls          = list(string)<br/>  }))</pre> | `{}` | no |
 | data\_connector\_mti\_enabled | Whether the Microsoft Threat Intelligence Data Connector is enabled. | `bool` | `false` | no |
 | data\_connector\_mti\_lookback\_days | Microsoft Threat Intelligence Data lookback days. | `number` | `7` | no |
 | data\_connector\_mxdr\_enabled | Whether sync is enabled between Microsoft XDR incidents and Microsoft Sentinel. | `bool` | `false` | no |
@@ -110,7 +110,19 @@ module "sentinel" {
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+| ---- | ----------- |
+| id | The Sentinel log analytics workspace onboarding ID. |
+| module\_diagnostics | The diagnostic settings module output. |
+| resource | The Sentinel log analytics workspace onboarding resource. |
+| resource\_data\_connector\_mxdr | The Microsoft XDR data connector resource. |
+| resource\_monitor\_aad\_diagnostic\_setting | The Azure AD diagnostic setting resource for Sentinel data connector. |
+| resource\_sentinel\_data\_connector\_aws\_s3 | The AWS S3 Sentinel data connector resources. |
+| resource\_sentinel\_data\_connector\_mti | The Microsoft Threat Intelligence Sentinel data connector resource. |
+| resource\_time\_offset | The time offset resource used for MTI lookback. |
+| resource\_ueba\_entity | The UEBA entity analytics resource. |
+| resource\_ueba\_source | The UEBA source resource. |
+| workspace\_id | The Log Analytics Workspace ID used for Sentinel onboarding. |
 <!-- END_TF_DOCS -->
 
 ## Related documentation
