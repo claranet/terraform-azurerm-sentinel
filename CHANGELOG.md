@@ -1,3 +1,13 @@
+## 9.1.0 (2026-09-25)
+
+### Features
+
+* **AZ-1704:** add MicrosoftServicePrincipalSignInLogs and AzureADGraphActivityLogs table logs 61f235c
+
+### Miscellaneous Chores
+
+* **deps:** ⬆️ update tools 🔗 14c9280
+
 ## 9.0.0 (2026-08-24)
 
 ### ⚠ BREAKING CHANGES
